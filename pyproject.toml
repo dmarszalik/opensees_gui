@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opensees-app"
+version = "0.1.0"
+description = "GUI + CLI for 3D frame/shell structural analysis with Eurocode support (OpenSeesPy)"
+requires-python = ">=3.10"
+dependencies = [
+    "openseespy>=3.8",
+    "numpy",
+    "PySide6",
+    "pyvista",
+    "pyvistaqt",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+opensees-app = "opensees_app.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["opensees_app*"]
+
+[tool.setuptools.package-data]
+"opensees_app.data.sections" = ["*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
